@@ -6,7 +6,8 @@ if [ -n "$REPORT_OUTPUT_DIR" ]; then
   mkdir -p "$output_dir"
 
   echo "Running as master node"
-  locust --host $LOCUST_HOST \
+  locust -f src/locustfile.py \
+    --host $LOCUST_HOST \
     --users $LOCUST_USERS \
     --spawn-rate $LOCUST_SPAWN_RATE \
     --run-time $LOCUST_RUN_TIME \

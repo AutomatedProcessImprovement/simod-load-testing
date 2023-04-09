@@ -12,7 +12,7 @@ output_dir="results/$timestamp"
 mkdir -p "$output_dir"
 
 # Experiment
-poetry run locust \
+poetry run locust -f src/locustfile.py \
 --host $SIMOD_HTTP_URL \
 --users $users \
 --spawn-rate $spawn_rate \
