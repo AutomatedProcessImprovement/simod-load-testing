@@ -6,12 +6,14 @@ on:
     branches: [ main ]
     paths:
       - 'Dockerfile'
+      - '*.sh'
       - 'src/**'
       - '.github/workflows/**'
   pull_request:
     branches: [ main ]
     paths:
       - 'Dockerfile'
+      - '*.sh'
       - 'src/**'
       - '.github/workflows/**'
 
