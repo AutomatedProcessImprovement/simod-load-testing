@@ -6,7 +6,7 @@ if [ -n "$REPORT_OUTPUT_DIR" ]; then
     mkdir -p "$output_dir"
     
     echo "Running as master node"
-    locust -f src/locustfile.py \
+    locust -f "src/$LOCUST_FILE" \
     --host $LOCUST_HOST \
     --users $LOCUST_USERS \
     --spawn-rate $LOCUST_SPAWN_RATE \
@@ -19,11 +19,10 @@ if [ -n "$REPORT_OUTPUT_DIR" ]; then
     --autostart \
     --autoquit 1 \
     --master
-    $LOCUST_LOAD_PROFILE
     
 else
     echo "Running as worker node"
-    locust -f src/locustfile.py \
+    locust -f src/$LOCUST_FILE \
     --worker \
     --master-host=$LOCUST_MASTER_NODE_HOST
 fi

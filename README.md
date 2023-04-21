@@ -88,11 +88,11 @@ db.requests.aggregate([
 Export the database to a file:
 
 ```bash
-mongoexport --db=simod --collection=requests --type=json --out=out.json -u root -p example --authenticationDatabase=admin
+mongoexport --db=simod --collection=requests --type=json --out=requests.json -u root -p example --authenticationDatabase=admin
 ```
 
 Copy the file from a pod to the local machine:
 
 ```bash
-kubectl cp <pod-name>:out.json ./out.json
+kubectl cp <pod-name>:requests.json ./requests.json
 ```
