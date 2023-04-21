@@ -9,30 +9,30 @@ from locust.contrib.fasthttp import FastHttpSession
 class BaseProfile(FastHttpUser):
     host = os.environ.get('SIMOD_HTTP_URL')
     endpoint_url = f'{host}/discoveries'
-    assets_dir = Path(__file__).parent / 'assets'
+    assets_dir = Path(__file__).parent.parent / 'assets'
 
     def wait_time(self):
         return random.expovariate(1 / 15)
 
 
-class Hospital(BaseProfile):
+class PrepaidTravelCost(BaseProfile):
     @task
     def post1(self):
-        make_post(self.client, self.assets_dir, self.endpoint_url, 'Hospital_log.xes')
+        make_post(self.client, self.assets_dir, self.endpoint_url, 'PrepaidTravelCost.xes')
 
     @task
     def post2(self):
-        make_post(self.client, self.assets_dir, self.endpoint_url, 'Hospital_log.xes')
+        make_post(self.client, self.assets_dir, self.endpoint_url, 'PrepaidTravelCost.xes')
 
 
-class BPIC2012(BaseProfile):
+class RequestForPayment(BaseProfile):
     @task
     def post1(self):
-        make_post(self.client, self.assets_dir, self.endpoint_url, 'BPI_Challenge_2012.xes')
+        make_post(self.client, self.assets_dir, self.endpoint_url, 'RequestForPayment.xes')
 
     @task
     def post2(self):
-        make_post(self.client, self.assets_dir, self.endpoint_url, 'BPI_Challenge_2012.xes')
+        make_post(self.client, self.assets_dir, self.endpoint_url, 'RequestForPayment.xes')
 
 
 def make_post(client: FastHttpSession, assets_dir: Path, endpoint_url: str, event_log_name: str):

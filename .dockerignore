@@ -1,0 +1,8 @@
+*
+!assets
+!src
+!Dockerfile
+!*.sh
+!poetry.lock
+!pyproject.toml
+!README.md

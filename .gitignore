@@ -1,3 +1,6 @@
 .DS_Store
 .idea/
-*.xes
+*.csv
+*.pyc
+__pycache__/
+results/
