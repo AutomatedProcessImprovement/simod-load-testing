@@ -6,19 +6,13 @@ from locust import FastHttpUser, constant, task
 from locust.contrib.fasthttp import FastHttpSession
 
 
-class BaseProfile(FastHttpUser):
+class PrepaidTravelCostSingleTask(FastHttpUser):
     host = os.environ.get("SIMOD_HTTP_URL")
     endpoint_url = f"{host}/discoveries"
     assets_dir = Path(__file__).parent.parent / "assets"
+
     wait_time = constant(1)
 
-
-class ExponentialProfile(BaseProfile):
-    def wait_time(self):
-        return random.expovariate(1 / 15)
-
-
-class PrepaidTravelCostSingleTask(BaseProfile):
     @task
     def post(self):
         make_post(
@@ -26,7 +20,14 @@ class PrepaidTravelCostSingleTask(BaseProfile):
         )
 
 
-class PrepaidTravelCostExponential(ExponentialProfile):
+class PrepaidTravelCostExponential(FastHttpUser):
+    host = os.environ.get("SIMOD_HTTP_URL")
+    endpoint_url = f"{host}/discoveries"
+    assets_dir = Path(__file__).parent.parent / "assets"
+
+    def wait_time(self):
+        return random.expovariate(1 / 15)
+
     @task
     def post(self):
         make_post(
@@ -46,7 +47,13 @@ class PrepaidTravelCostExponential(ExponentialProfile):
         )
 
 
-class RequestForPaymentSingleTask(BaseProfile):
+class RequestForPaymentSingleTask(FastHttpUser):
+    host = os.environ.get("SIMOD_HTTP_URL")
+    endpoint_url = f"{host}/discoveries"
+    assets_dir = Path(__file__).parent.parent / "assets"
+
+    wait_time = constant(1)
+
     @task
     def post(self):
         make_post(
@@ -54,7 +61,14 @@ class RequestForPaymentSingleTask(BaseProfile):
         )
 
 
-class RequestForPaymentExponential(ExponentialProfile):
+class RequestForPaymentExponential(FastHttpUser):
+    host = os.environ.get("SIMOD_HTTP_URL")
+    endpoint_url = f"{host}/discoveries"
+    assets_dir = Path(__file__).parent.parent / "assets"
+
+    def wait_time(self):
+        return random.expovariate(1 / 15)
+
     @task
     def post(self):
         make_post(
