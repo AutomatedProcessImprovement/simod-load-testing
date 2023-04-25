@@ -13,13 +13,13 @@ Below you can find sample MongoDB queries to retrieve data for the scalability e
 
 Mongo query to count finished requests:
 
-```json
+```mongo
 db.requests.count({ status: {$eq: 'succeeded' } })
 ```
 
 Mongo query to calculate duration of the experiment in milliseconds:
 
-```json
+```mongo
 db.requests.aggregate([
     {
         $match: {
@@ -61,7 +61,7 @@ db.requests.aggregate([
 
 Mongo query to calculate the duration of each request:
 
-```json
+```mongo
 db.requests.aggregate([
   {
     $match: {
