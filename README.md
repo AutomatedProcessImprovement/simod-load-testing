@@ -3,24 +3,18 @@
 ![build](https://github.com/AutomatedProcessImprovement/simod-load-testing/actions/workflows/build.yaml/badge.svg)
 ![version](https://img.shields.io/github/v/tag/AutomatedProcessImprovement/simod-load-testing)
 
+This repository contains the load testing scripts for [simod-on-containers](https://github.com/AutomatedProcessImprovement/simod-on-containers), a solution for scalable business process discovery using Kubernetes as the container orchestration platform.
+
+This repository provides a container image for the testing. The testing itself is executed using a Kubernetes manifest file such as [locust-scalability-travel.yaml](https://github.com/AutomatedProcessImprovement/simod-on-containers/blob/main/deploy/kind/locust-scalability-travel.yaml) or [locust-scalability-payments.yaml](https://github.com/AutomatedProcessImprovement/simod-on-containers/blob/main/deploy/kind/locust-scalability-payments.yaml).
+
+Below you can find sample MongoDB queries to retrieve data for the scalability experiment.
+
 ## Scalability Experiment
 
 Mongo query to count finished requests:
 
 ```json
 db.requests.count({ status: {$eq: 'succeeded' } })
-```
-
-Mongo query to find the earliest timestamp:
-
-```json
-db.requests.find({ finished_timestamp: { $exists: true, $ne: null } }).sort({ created_timestamp: 1 }).limit(1)
-```
-
-Mongo query to find the latest timestamp:
-
-```json
-db.requests.find({ finished_timestamp: { $exists: true, $ne: null } }).sort({ finished_timestamp: -1 }).limit(1)
 ```
 
 Mongo query to calculate duration of the experiment in milliseconds:
